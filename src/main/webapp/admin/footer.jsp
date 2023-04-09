@@ -94,6 +94,7 @@
 		border: 2px solid black;
 	}</style>
 	
+	// đăng ký
 <script >
 $(document).ready(function () {
     $('#submit').on("click",function(e){

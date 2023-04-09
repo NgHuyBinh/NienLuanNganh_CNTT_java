@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.ClassDAO;
+import dao.RegisterDAO;
 import dao.RegistrationDAO;
 import dao.RoomDAO;
 import dao.StudentDAO;
@@ -61,7 +62,23 @@ public class Index extends HttpServlet {
 			String buoi = request.getParameter("buoi");
 			String phong = request.getParameter("phong");
 			String ngaydangky = request.getParameter("ngaydangky");
-			String ghichu = request.getParameter("ghichu");
+			String ghichu= request.getParameter("ghichu");
+			int registration_id = new RegistrationDAO().getIdByRoomIdBuoiNgay(phong, buoi, ngaydangky);
+			HttpSession session = request.getSession();
+			int student_id = new StudentDAO().getIdByMSSV(session.getAttribute("mssv").toString());
+			String trangthai = "0";
+			//kIEM TRA student_id => viet ham kiem tra student_id co ton tai trong register (registerDAO) ;
+				if(new RegisterDAO().checkStudentId(student_id) != 0) {
+					// neu ton tai trong bang register => update
+					//update
+					new RegisterDAO().updateRegister(student_id, registration_id, trangthai, ghichu);
+				}else {
+					// ko ton tai thi => insert
+					new RegisterDAO().getInsertRegister(student_id, registration_id, trangthai, ghichu);
+				}
+				
+				
+			
 		}
 		
 	}

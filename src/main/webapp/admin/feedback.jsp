@@ -1,8 +1,8 @@
 <%@page import="entity.Student"%>
-<%@ include file="include/header.jsp" %>
+<%@ include file="/admin/header.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="spacer services wowload fadeInUp">
+<div class="spacer services wowload fadeInUp" style="height:750px">
 
 
 		<h1 class="container">Danh sách phản hồi cơ sở vật chất</h1>
@@ -33,4 +33,4 @@
 		</div>
 
 </div>
-<%@ include file="include/footer.jsp" %>
+<%@ include file="/admin/footer.jsp" %>

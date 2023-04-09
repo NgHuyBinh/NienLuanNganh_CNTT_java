@@ -25,7 +25,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 <body>
 		<!--header-->
 		<div class="header-w3l">
-			<h1 >Login</h1>
+			<h1 >Login Administrators</h1>
 		</div>
 		<!--//header-->
 		<!--main-->
@@ -33,15 +33,15 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 	           <!--form-stars-here-->
 						<div class="wthree-form">
 							<h2>Fill out the form below to login</h2>
-							<form action="login" method="post">
+							<form action="loginadmin" method="post">
 								<div class="form-sub-w3">
-									<input type="text" name="mssv" placeholder="Username " required/>
+									<input type="text" name="username" placeholder="Username " required />
 								<div class="icon-w3">
 									<i class="fa fa-user" aria-hidden="true"></i>
 								</div>
 								</div>
 								<div class="form-sub-w3">
-									<input type="password" name="password" placeholder="Password" required/>
+									<input type="password" name="password" placeholder="Password" required />
 								<div class="icon-w3">
 									<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 								</div>
@@ -64,7 +64,7 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 		<!--footer-->
 		<div class="footer">
 			<p>
-				&copy; Hệ thống quản lý đăng ký phòng báo cáo luận văn tốt nghiệp | <a href="http://w3layouts.com">Phiên bản 2023</a>
+				<a href="http://w3layouts.com">Phiên bản 2023</a>
 			</p>
 		</div>
 		<!--//footer-->

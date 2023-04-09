@@ -102,7 +102,7 @@
 				</div>
 		<div class="container">	
 	            <div id="filter" style="text-align:center;margin-top: 1%;margin-bottom:1%;">
-		            <select class="form-control" id="phong">
+		            <select class="form-control" id="locphong">
 				        <option  value="">Phòng</option>
 				            <% 
 			            	if(request.getAttribute("room") != null){
@@ -112,7 +112,7 @@
 					              <option value="<%= o.getId() %>"><%=o.getPhong()%></option>						
 			    			<% }}%>	
 		            </select>
-		            <select class="form-control" id="buoi" >
+		            <select class="form-control" id="locbuoi" >
 		              <option value="">Buổi</option>
 		               <% 
 		            	if(request.getAttribute("buoi") != null){

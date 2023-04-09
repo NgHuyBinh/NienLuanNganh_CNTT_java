@@ -1,3 +1,5 @@
+<%@page import="entity.Room"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="context.DBContext"%>
@@ -20,13 +22,35 @@
 	            </div>		
 	            <div id="filter" style="text-align:center;margin-top: 1%;margin-bottom:1%;">
 		            <select class="form-control" id="locphong">
+		            
 				        <option  value="">Phòng</option>
+			            	<% 
+			            	if(request.getAttribute("room") != null){
+			    				List<Room> list = (List<Room>)request.getAttribute("room");
+			    				for(Room o: list){
+			    			%>
+					              <option value="<%= o.getId() %>"><%=o.getPhong()%></option>						
+			    			<% }}%>	
 		            </select>
 		            <select class="form-control" id="locbuoi" >
 		              <option value="">Buổi</option>
+				            <% 
+			            	if(request.getAttribute("buoi") != null){
+			    				List<String> list1 = (List<String>)request.getAttribute("buoi");
+			    				for(String o: list1){
+			    			%>
+					              <option value="<%=o %>"><% out.println(o); %></option>						
+			    			<% }}%>	
 		            </select>
 		            <select class="form-control" id="locngay" >
 		              <option value="">Ngày</option>
+					        <% 
+			            	if(request.getAttribute("ngay") != null){
+			    				List<String> list2 = (List<String>)request.getAttribute("ngay");
+			    				for(String o: list2){
+			    			%>
+					              <option value="<%=o %>"><% out.println(o); %></option>						
+			    			<% }}%>			              
 		            </select>
             
 	           	</div>        

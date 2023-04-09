@@ -1,9 +1,5 @@
-<%@page import="entity.Student"%>
-<%
-	if(session.getAttribute("mssv") == null){
-		response.sendRedirect("login");
-	}
-%>
+<%@page import="entity.Admin"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,24 +18,24 @@
 
 
 <!-- bootstrap -->
-<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/luanvan/assets/bootstrap/css/bootstrap.min.css" />
 
 <!-- uniform -->
-<link type="text/css" rel="stylesheet" href="assets/uniform/css/uniform.default.min.css" />
+<link type="text/css" rel="stylesheet" href="/luanvan/assets/uniform/css/uniform.default.min.css" />
 
 <!-- animate.css -->
-<link rel="stylesheet" href="assets/wow/animate.css" />
+<link rel="stylesheet" href="/luanvan/assets/wow/animate.css" />
 
 
 <!-- gallery -->
-<link rel="stylesheet" href="assets/gallery/blueimp-gallery.min.css">
+<link rel="stylesheet" href="/luanvan/assets/gallery/blueimp-gallery.min.css">
 
 
 <!-- favicon -->
-<link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
-<link rel="icon" href="images/favicon.png" type="image/x-icon">
+<link rel="shortcut icon" href="/luanvan/images/favicon.png" type="image/x-icon">
+<link rel="icon" href="/luanvan/images/favicon.png" type="image/x-icon">
 
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="/luanvan/assets/style.css">
 <style>
 	#searchtext {
 		text-align:center;
@@ -91,17 +87,12 @@
 
       <ul class="nav navbar-nav" >
 			    	     	        
-        <li><a href="index">Trang chủ</a></li>     
-        <li><a href="feekbackstudent">Phản hồi</a></li>
-      	<li><a href="resetpassword">Đổi mật khẩu</a></li>   
-        <li style="font-weight:bold;width:373.75px"><a >Hello,
-        <%
-				if(request.getAttribute("Student")!=null){
-					Student cs = (Student)request.getAttribute("Student");
-					out.println(cs.getHoten());
-				}
-				
-			%>  </a></li>
+        <li><a href="index.jsp">Phê duyệt đăng ký</a></li>     
+        <li><a href="feedback.jsp">Phản hồi</a></li>
+      	<li><a href="">Lịch phòng</a></li>   
+        <li style="font-weight:bold;width:373.75px"><a >Hello, Admin
+   
+     </a></li>
         <li style="padding-left:300px"><a href="exitstudent">Thoát</a></li>
       </ul>
       
