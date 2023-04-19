@@ -60,8 +60,41 @@ public class RegisterDAO {
 		}
 		return 0;
 	}
+	// cập nhật lý do qua id
+	
+	//cập nhật ghi chú
+	public void updateHuy( String ghichu,String trangthai, int id) {
+		String sql = "update register set ghichu=?, trangthai=? where id=?";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, ghichu);
+			ps.setString(2, trangthai);
+			ps.setInt(3, id);
+			ps.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();// TODO: handle exception
+		}
+	}
+	// hàm xác nhận duyet
+	public void updateDuyet( String trangthai, int id) {
+		String sql = "update register set  trangthai=? where id=?";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, trangthai);
+			ps.setInt(2, id);
+			ps.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();// TODO: handle exception
+		}
+	}
+	
 	public static void main (String[] args) {
-		new RegisterDAO().updateRegister(7, 59, "0", "cập nhật");
+	//	new RegisterDAO().updateRegister(7, 59, "0", "cập nhật");
+		
 		
 	
 	}

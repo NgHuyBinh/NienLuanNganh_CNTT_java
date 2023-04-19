@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.AdminDAO;
-import dao.StudentDAO;
 
 
 @WebServlet(name = "loginadmin", urlPatterns = { "/loginadmin" })
@@ -41,9 +40,10 @@ public class LoginAdmin extends HttpServlet {
 		if(cs.checkAccount(username, password) != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("username", username);
-			response.sendRedirect("/admin/indexadmin");
+			response.sendRedirect("indexadmin");
+			
 		}else {
-			response.sendRedirect("/admin/loginadmin");
+			response.sendRedirect("loginadmin");
 		}
 	}
 }

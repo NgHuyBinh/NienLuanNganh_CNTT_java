@@ -29,6 +29,21 @@ public class RoomDAO {
 			e.printStackTrace();
 		}return list;
 	}
+	
+	// xóa phòng
+	public void deleteRoomById(int id){
+		String sql = "DELETE FROM rooms WHERE id=?";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 		List<Room> list = new RoomDAO().getAllRoom();
 		for(Room o : list) {

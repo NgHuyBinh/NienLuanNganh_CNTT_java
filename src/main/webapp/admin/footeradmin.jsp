@@ -5,15 +5,14 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4>Đăng ký phòng báo cáo luận văn tốt nghiệp</h4>
-                    <p>Hệ thống đăng ký phòng báo cáo luận văn tốt nghiệp hổ trợ sinh viên năm cuối đăng ký phòng báo cáo luận văn tốt nghiệp của mình. Đánh dấu thành công của những năm nổ lực học tập. </p>
+                    <p>Hệ thống đăng ký phòng báo cáo luận văn tốt nghiệp đã trở thành một công cụ hữu ích giúp sinh viên dễ dàng đăng ký và quản lý thời gian của mình. Điều này giúp tạo ra sự thuận lợi cho sinh viên trong quá trình hoàn thành khóa học và tạo ra những thành công đáng kể trong hành trình học tập.</p>
                 </div>              
                  
                  <div class="col-sm-3">
                     <h4>Quick Links</h4>
-                    <ul class="list-unstyled">
-                        <li><a href="rooms.jsp">Lịch phòng</a></li>        
-                        <li><a href="feedback.jsp">Phản hồi</a></li>
-                        <li><a href="resetpassword.jsp">Đổi mật khẩu</a></li>
+                    <ul class="list-unstyled">      
+                        <li><a href="indexadmin">Trang chủ</a></li>
+                        <li><a href="roomsadmin">Lịch phòng</a></li>  
                     </ul>
                 </div>
                  <div class="col-sm-4 subscribe">
@@ -96,116 +95,98 @@
 	
 	// đăng ký
 <script >
-$(document).ready(function () {
-    $('#submit').on("click",function(e){
-		e.preventDefault();
-    	var buoi = $("#buoi").val();
-    	var phong = $("#phong").val();
-    	var ngaydangky = $("#dateregister").val();
-    	var ghichu = $("#ghichu").val();
-    	
-    	var ngaybatdau = '2023-04-24';
-    	var ngayketthuc = '2023-04-29';
-    	console.log(ngaydangky > ngaybatdau);
-    	if(buoi == "" || phong == "" || ngaydangky == ""){
-    		alert("Hãy nhập đầy đủ thông tin!");
-    	}else {
-    		if(ngaydangky < ngaybatdau || ngaydangky > ngayketthuc){
-    			alert("Nhập ngày chưa hợp lệ!");
-    		}else{
+	$(document).ready(function(){
+		$(".huybo").on('click',function(){
+			var id = $(this).attr("data-id");
+			$(".modal-body").html('<input type="hidden" id="id" value="'+id+'" /><input type="text" id="lydo" placeholder="Nhập lý do" />');
+		})
+		$(".guilydo").on('click',function(e){
+			e.preventDefault();
+			var id = $("#id").val();
+			var lydo = $("#lydo").val();
+			if(lydo == ""){
+				alert("Hãy nhập vào lý do!");
+			}else{
     			$.ajax({
-    	    		url: "/luanvan/index",
+    	    		url: "/luanvan/subadmin",  
     	    		type: "POST",
-    	    		data: {buoi:buoi,phong:phong,ngaydangky:ngaydangky,ghichu:ghichu},
+    	    		data: {id:id,lydo:lydo},
     	    		success: function(data){
-    	    			alert("Bạn đã đăng ký phòng thành công chờ ngày báo cáo nhé!");
-    	    			$("form")[0].reset();
+						$("#tbodyduyet").html(data);
+						$('#myModal').modal('hide');
     	    		}
     	    	})
-    		}
-    	}
-    	
-    });
-	//Loc buoi
-	$("#locbuoi").on("input",function(){
-		var buoi = $("#locbuoi").val();
-		//var buoi = $(this).val();
-		var ngay = $("#locngay").val();
-		var phong = $("#locphong").val();
-		console.log(ngay);
-		console.log(phong);
-		$.ajax({
-			url: "/luanvan/filter",
-			type: "POST",
-			data: {buoi:buoi,phong:phong,ngay:ngay},
-			success: function(data){
-				$("#tbody").html(data);
 			}
 		})
-	});
-	//loc ngay
-	$("#locngay").on("input",function(){
-		var buoi = $("#locbuoi").val();
-		//var buoi = $(this).val();
-		var ngay = $("#locngay").val();
-		var phong = $("#locphong").val();
-		console.log(ngay);
-		console.log(phong);
-		$.ajax({
-			url: "/luanvan/filter",
-			type: "POST",
-			data: {buoi:buoi,phong:phong,ngay:ngay},
-			success: function(data){
-				$("#tbody").html(data);
-			}
-		})
-	});
-	//loc phong
-	$("#locphong").on("input",function(){
-		var buoi = $("#locbuoi").val();
-		//var buoi = $(this).val();
-		var ngay = $("#locngay").val();
-		var phong = $("#locphong").val();
-		console.log(ngay);
-		console.log(phong);
-		$.ajax({
-			url: "/luanvan/filter",
-			type: "POST",
-			data: {buoi:buoi,phong:phong,ngay:ngay},
-			success: function(data){
-				$("#tbody").html(data);
-			}
-		})
-	});
-	// update password
-	$("#updatepassword").on("click",function(e){
-		e.preventDefault();
-		var passcu = $("#passcu").val();
-		var passmoi1 = $("#passmoi1").val();
-		var passmoi2 = $("#passmoi2").val();
-		if(passmoi1 == passmoi2){
+		// xác nhận duyệt
+		$(".xacnhan").on('click',function(e){
+			e.preventDefault();
+			var id = $(this).attr("data-id");
 			$.ajax({
-				url:"/luanvan/resetpassword",
-				type: "POST",
-				data: {passcu:passcu, passmoi1:passmoi1, passmoi2:passmoi2},
-				success: function(data){
-					if(data==1){
-						//thanh cong
-						alert('Bạn đã đổi mật khẩu thành công!')
-						$("#formresetpass")[0].reset();					}
-					if(data==0){
-						//that bai
-						alert('Đổi mật khẩu thất bại. Bạn cần nhập đúng mật khẩu cũ.')
-					}
-				}
-			})			
-		}else{
-			alert('Mật khẩu nhập lại không khớp!');
-		}
-			
+	    		url: "/luanvan/xacnhan1",  
+	    		type: "POST",
+	    		data: {id:id},
+	    		success: function(data){
+					$("#tbodyduyet").html(data);
+	    		}
+	    	})
+		})
+		
 
-	});
-});
+		
+		//Loc buoi
+		$("#locbuoi").on("input",function(){
+			var buoi = $("#locbuoi").val();
+			//var buoi = $(this).val();
+			var ngay = $("#locngay").val();
+			var phong = $("#locphong").val();
+			console.log(ngay);
+			console.log(phong);
+			$.ajax({
+				url: "/luanvan/filter",
+				type: "POST",
+				data: {buoi:buoi,phong:phong,ngay:ngay},
+				success: function(data){
+					$("#tbody").html(data);
+				}
+			})
+		});
+		//loc ngay
+		$("#locngay").on("input",function(){
+			var buoi = $("#locbuoi").val();
+			//var buoi = $(this).val();
+			var ngay = $("#locngay").val();
+			var phong = $("#locphong").val();
+			console.log(ngay);
+			console.log(phong);
+			$.ajax({
+				url: "/luanvan/filter",
+				type: "POST",
+				data: {buoi:buoi,phong:phong,ngay:ngay},
+				success: function(data){
+					$("#tbody").html(data);
+				}
+			})
+		});
+		//loc phong
+		$("#locphong").on("input",function(){
+			var buoi = $("#locbuoi").val();
+			//var buoi = $(this).val();
+			var ngay = $("#locngay").val();
+			var phong = $("#locphong").val();
+			console.log(ngay);
+			console.log(phong);
+			$.ajax({
+				url: "/luanvan/filter",
+				type: "POST",
+				data: {buoi:buoi,phong:phong,ngay:ngay},
+				success: function(data){
+					$("#tbody").html(data);
+				}
+			})
+		}); 
+	})
+
 </script>
 	
 </body>

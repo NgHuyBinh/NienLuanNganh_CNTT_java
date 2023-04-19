@@ -1,5 +1,9 @@
 <%@page import="entity.Admin"%>
-
+<%
+	if(session.getAttribute("username") == null){
+		response.sendRedirect("loginadmin");
+	}
+%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -87,13 +91,13 @@
 
       <ul class="nav navbar-nav" >
 			    	     	        
-        <li><a href="index.jsp">Phê duyệt đăng ký</a></li>     
-        <li><a href="feedback.jsp">Phản hồi</a></li>
-      	<li><a href="">Lịch phòng</a></li>   
+        <li><a href="indexadmin">Phê duyệt đăng ký</a></li>     
+        <li><a href="feedbackadmin">Phản hồi</a></li>
+      	<li><a href="roomsadmin">Lịch phòng</a></li>   
         <li style="font-weight:bold;width:373.75px"><a >Hello, Admin
    
      </a></li>
-        <li style="padding-left:300px"><a href="exitstudent">Thoát</a></li>
+        <li style="padding-left:250px"><a href="exitadmin">Thoát</a></li>
       </ul>
       
     </div>

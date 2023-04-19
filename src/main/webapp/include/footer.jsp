@@ -5,15 +5,15 @@
             <div class="row">
                 <div class="col-sm-5">
                     <h4>Đăng ký phòng báo cáo luận văn tốt nghiệp</h4>
-                    <p>Hệ thống đăng ký phòng báo cáo luận văn tốt nghiệp hổ trợ sinh viên năm cuối đăng ký phòng báo cáo luận văn tốt nghiệp của mình. Đánh dấu thành công của những năm nổ lực học tập. </p>
+                    <p>Hệ thống đăng ký phòng báo cáo luận văn tốt nghiệp giúp sinh viên năm cuối đăng ký phòng báo cáo thành công và đánh dấu kết quả nỗ lực học tập của mình.</p>
                 </div>              
                  
                  <div class="col-sm-3">
                     <h4>Quick Links</h4>
                     <ul class="list-unstyled">
-                        <li><a href="rooms.jsp">Lịch phòng</a></li>        
-                        <li><a href="feedback.jsp">Phản hồi</a></li>
-                        <li><a href="resetpassword.jsp">Đổi mật khẩu</a></li>
+                        <li><a href="rooms">Lịch phòng</a></li>        
+                        <li><a >Phản hồi</a></li>
+                        <li><a >Đổi mật khẩu</a></li>
                     </ul>
                 </div>
                  <div class="col-sm-4 subscribe">
@@ -117,7 +117,7 @@ $(document).ready(function () {
     	    		type: "POST",
     	    		data: {buoi:buoi,phong:phong,ngaydangky:ngaydangky,ghichu:ghichu},
     	    		success: function(data){
-    	    			alert("Bạn đã đăng ký phòng thành công chờ ngày báo cáo nhé!");
+    	    			alert("Bạn đã đăng ký thành công!");
     	    			$("form")[0].reset();
     	    		}
     	    	})

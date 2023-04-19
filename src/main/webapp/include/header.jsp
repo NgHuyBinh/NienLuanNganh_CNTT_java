@@ -92,8 +92,9 @@
       <ul class="nav navbar-nav" >
 			    	     	        
         <li><a href="index">Trang chủ</a></li>     
-        <li><a href="feekbackstudent">Phản hồi</a></li>
-      	<li><a href="resetpassword">Đổi mật khẩu</a></li>   
+        <li><a data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#Modal'>Phản hồi</a></li>
+        <li><a data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#Modalroom'>DK thêm phòng</a></li>
+        <li><a href="resetpassword">Đổi mật khẩu</a></li>   
         <li style="font-weight:bold;width:373.75px"><a >Hello,
         <%
 				if(request.getAttribute("Student")!=null){
@@ -102,12 +103,60 @@
 				}
 				
 			%>  </a></li>
-        <li style="padding-left:300px"><a href="exitstudent">Thoát</a></li>
+        <li style="padding-left:150px"><a href="exitstudent">Thoát</a></li>
       </ul>
       
     </div>
     <!-- Wnavbar-collapse -->
   </div><!-- container-fluid -->
 </nav>
+<div class="modal fade" id="Modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3 class="modal-title"><b>Nhập nội dung phản hồi</b></h3>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input size="68" type="text" />
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="guiphanhoi">Gửi</button>
+        </div>
+        
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="Modalroom">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3 class="modal-title"><b>Nhập yêu cầu mở thêm phòng báo cáo</b></h3>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input  size="68" type="text" />
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="guiyeucau">Gửi</button>
+        </div>
+        
+      </div>
+    </div>
+</div>
+
 <!-- header -->
 

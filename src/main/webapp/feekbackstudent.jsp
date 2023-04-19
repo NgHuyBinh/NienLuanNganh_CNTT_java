@@ -5,32 +5,31 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*" %>
 
-
-<div class="spacer services wowload fadeInUp">
-		<h1 class="container" style="text-align:center">Phản hồi cơ sở vật chất</h1>
-				<div style="text-align:center;margin-top: 1%;margin-bottom:1%;"><h3 class="container" ><b>Tuần báo cáo tập trung </b></h3></div>
-				<div style="text-align:center;">
-					<h3 class="container" ><b>Từ ngày 24-04-2023 đến ngày 29-04-2023 </b></h3>
-		<div class="container">	
-			<div class="col-sm-5 col-md-4">
-		<div class="container">
-		    <form role="form" class="wowload fadeInRight">    
-		        <div class="form-group">
-		            <textarea class="form-control"  placeholder="Nội dung phản hồi" rows="4"></textarea>
-		        </div>
-		        <button class="btn btn-default">Gửi</button>
-		    </form>    
-		</div>
-</div>
-
-</div>  
-</div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Lý do hủy</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <input style="height = 590px; width= 50;" type="text" />
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal" id="guilydo">Gửi</button>
+        </div>
+        
+      </div>
+    </div>
 </div>
 			
-        </div>		
-		</div>
 
-</div>
 <!-- services -->
 
 <%@ include file="include/footer.jsp" %>
