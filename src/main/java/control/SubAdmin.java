@@ -33,8 +33,7 @@ public class SubAdmin extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//Lay du lieu hung gia tri
 			int id = Integer.parseInt(request.getParameter("id"));
-			String lydo = request.getParameter("lydo");
-			
+			String lydo = request.getParameter("lydo");	
 		//Cap nhat thong qua ham update viet trong reigstedao
 			new RegisterDAO().updateHuy(lydo, "2", id);
 		//do ra du lieu

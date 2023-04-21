@@ -29,10 +29,24 @@ public class RoomDAO {
 			e.printStackTrace();
 		}return list;
 	}
+	// thêm phòng
+	public void insertRoom(String phong, int soluongtoida){
+		String sql = "insert into room (phong,soluongtoida) values (?,?)";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, phong);
+			ps.setInt(2, soluongtoida);
+			ps.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	// xóa phòng
 	public void deleteRoomById(int id){
-		String sql = "DELETE FROM rooms WHERE id=?";
+		String sql = "DELETE FROM room WHERE id=?";
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -45,9 +59,11 @@ public class RoomDAO {
 	}
 	
 	public static void main(String[] args) {
-		List<Room> list = new RoomDAO().getAllRoom();
-		for(Room o : list) {
-			System.out.println(o);
-		}
+//		List<Room> list = new RoomDAO().getAllRoom();
+//		for(Room o : list) {
+//			System.out.println(o);
+//		}
+		
+		new RoomDAO().deleteRoomById(8);
 	}
 }

@@ -92,8 +92,8 @@
       <ul class="nav navbar-nav" >
 			    	     	        
         <li><a href="index">Trang chủ</a></li>     
-        <li><a data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#Modal'>Phản hồi</a></li>
-        <li><a data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#Modalroom'>DK thêm phòng</a></li>
+        <li><a class="phanhoi" data-id='"+rs.getInt("id")+"' data-toggle='modal' data-target='#guifeedback'>Phản hồi</a></li>
+        <li><a class="mophong" data-id='"+rs.getInt("id")+"' data-toggle='modal' data-target='#mothemphong'>DK thêm phòng</a></li>
         <li><a href="resetpassword">Đổi mật khẩu</a></li>   
         <li style="font-weight:bold;width:373.75px"><a >Hello,
         <%
@@ -110,7 +110,7 @@
     <!-- Wnavbar-collapse -->
   </div><!-- container-fluid -->
 </nav>
-<div class="modal fade" id="Modal">
+<div class="modal fade" id="guifeedback">
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -127,14 +127,15 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" id="guiphanhoi">Gửi</button>
+          <button type="buton" class="btn btn-success guiphanhoi" data-dismiss="modal">Xác nhận</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</buttotn>
         </div>
         
       </div>
     </div>
 </div>
 
-<div class="modal fade" id="Modalroom">
+<div class="modal fade" id="mothemphong">
     <div class="modal-dialog">
       <div class="modal-content">
       
@@ -151,7 +152,6 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal" id="guiyeucau">Gửi</button>
         </div>
         
       </div>

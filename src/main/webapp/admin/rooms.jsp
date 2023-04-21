@@ -9,9 +9,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="spacer services wowload fadeInUp">
-		<%
-			Student cs = (Student)request.getAttribute("Student");
-		%>
 		<h1 class="container">Danh sách phòng báo cáo luận văn</h1>
 		<div style="text-align:center;margin-top: 1%;"><h2 class="container" >Tuần báo cáo tập trung</h2></div>
 				<div style="text-align:center;">
@@ -21,39 +18,23 @@
 	            <div id="filter" style="text-align:center;margin-top: 1%;margin-bottom:1%;">
 		            <select class="form-control" id="locphong">
 				        <option  value="">Phòng</option>
-				            <% 
-			            	if(request.getAttribute("room") != null){
-			    				List<Room> list = (List<Room>)request.getAttribute("room");
-			    				for(Room o: list){
-			    			%>
-					              <option value="<%= o.getId() %>"><%=o.getPhong()%></option>						
-			    			<% }}%>	
 		            </select>
 		            <select class="form-control" id="locbuoi" >
 		              <option value="">Buổi</option>
-		               <% 
-		            	if(request.getAttribute("buoi") != null){
-		    				List<String> list1 = (List<String>)request.getAttribute("buoi");
-		    				for(String o: list1){
-		    			%>
-				              <option value="<%=o %>"><% out.println(o); %></option>						
-		    			<% }}%>	
 		            </select>
 		            <select class="form-control" id="locngay" >
 		              <option value="">Ngày</option>
-		                <% 
-		            	if(request.getAttribute("ngay") != null){
-		    				List<String> list2 = (List<String>)request.getAttribute("ngay");
-		    				for(String o: list2){
-		    			%>
-				              <option value="<%=o %>"><% out.println(o); %></option>						
-		    			<% }}%>	
 		            </select>
             
 	           	</div>        
 
         </div>
-        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-left: 2%;margin-bottom:1%;" id="insertroom">Thêm phòng báo cáo</button>
+        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-left: 1%;margin-bottom:1%;" id="insertroom">
+        		<a href="roomroom" style="color: black;">Quản lý phòng báo cáo</a>
+        	</button>
+        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-bottom:1%;" id="insertregistration">
+        		<a href="registrationplus"  style="color: black;">Quản lý lịch phòng</a>
+        	</button>
 			<table class="table table-bordered" >
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
@@ -62,8 +43,7 @@
 					<th style="border: 2px solid black;">Buổi</th>
 					<th style="border: 2px solid black;">Số lượng hiện tại</th>
 					<th style="border: 2px solid black;">Số lượng tối đa</th>
-					<th style="border: 2px solid black;">Danh sách sinh viên</th>
-					<th style="border: 2px solid black; width : 250px;">Thao tác</th>					
+					<th style="border: 2px solid black;">Danh sách sinh viên</th>				
 				</thead>
 				<tbody id="tbody">
 				<%
@@ -84,12 +64,6 @@
 						<td style="border: 2px solid black;"><%=rs.getString("soluonghientai") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("soluongtoida") %></td>
 						<td style="border: 2px solid black;"> VIEW </td>
-						<td style="border: 2px solid black;  text-align: center">
-							<%
-						        out.println("<button class='btn btn-success' id='chinhsua'>Chỉnh sửa</button>");
-						        out.println("<button class='btn btn-danger' id='xoaphong'>Xóa</button>");
-							%>
-						</td>
 					</tr>
 				<%
 				

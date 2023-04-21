@@ -204,6 +204,18 @@ $(document).ready(function () {
 			
 
 	});
+	// gửi phản hồi
+	$(".phanhoi").on("click",function(e){
+		alert("22")
+	})
+	
+	// gửi phản hồi
+	
+	$(".mophong").on("click",function(e){
+		alert("232")
+	})
+	
+	
 });
 </script>
 	

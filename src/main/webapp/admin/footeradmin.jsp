@@ -96,6 +96,7 @@
 	// đăng ký
 <script >
 	$(document).ready(function(){
+		// xử lý phê duyệt
 		$(".huybo").on('click',function(){
 			var id = $(this).attr("data-id");
 			$(".modal-body").html('<input type="hidden" id="id" value="'+id+'" /><input type="text" id="lydo" placeholder="Nhập lý do" />');
@@ -132,6 +133,114 @@
 	    	})
 		})
 		
+		// thêm phòng
+		$(".themphong").on('click',function(){
+			$(".modal-body").html('<input type="text;" style="500px" id="phong" placeholder="Nhập phòng" /><input type="text" id="soluong" placeholder="Nhập số lượng" />');
+		})
+		function themphong(){	
+		$(".them").on('click',function(e){
+			e.preventDefault();
+			var phong = $("#phong").val();
+			var soluong = $("#soluong").val();
+			if(phong == "" || soluong == ""){
+				alert("Hãy nhập đầy đủ nội dung!");
+			}else{
+    			$.ajax({
+    	    		url: "/luanvan/insertroom",  
+    	    		type: "POST",
+    	    		data: {phong:phong,soluong:soluong},
+    	    		success: function(data){
+    					$("#tbodythemphong").html(data);
+						$('#roomroom').modal('hide');
+						xoaphong()
+    	    		}
+    	    		
+    	    	})
+			}
+		})
+		}
+		themphong()
+
+		// xóa phòng
+		function xoaphong(){
+		$(".xoaphong").on('click',function(e){
+			e.preventDefault();
+			var id = $(this).attr("data-id");
+			let text;
+			  if (confirm("Bạn chắc chắn muốn xóa") == true) {
+				  $.ajax({
+			    		url: "/luanvan/deleteroom",  
+			    		type: "POST",
+			    		data: {id:id},
+			    		success: function(data){
+							$("#tbodythemphong").html(data);
+							$('#deleterooms').modal('hide');
+							xoaphong()
+			    		}
+			    	})
+			  } else {
+			    
+			  }
+			
+		})		
+		}
+ 		xoaphong()
+		
+		
+		
+		// thêm lịch phòng
+		$(".themlichphong").on('click',function(){
+			$(".modal-body").html('<input type="text" id="room_id" placeholder="Nhập mã phòng" /><input type="text" id="ngaydangky" placeholder="Nhập ngày đăng ký" /><input type="text" id="buoi" placeholder="Nhập buổi" />');
+		})
+		function themlich(){
+		$(".themlich").on('click',function(e){
+			e.preventDefault();
+			var room_id = $("#room_id").val();
+			var ngaydangky = $("#ngaydangky").val();
+			var buoi = $("#buoi").val();
+			if(room_id == "" || ngaydangky == "" || buoi==""){
+				alert("Hãy nhập đầy đủ nội dung!");
+			}else{
+    			$.ajax({
+    	    		url: "/luanvan/insertregistration",  
+    	    		type: "POST",
+    	    		data: {room_id:room_id,ngaydangky:ngaydangky,buoi:buoi},
+    	    		success: function(data){
+    					$("#tbodythemlich").html(data);
+						$('#themregistration').modal('hide');
+    	    		}
+    	    	})
+			}
+		}) 	
+ 			
+ 		}
+ 		themlich()
+
+		
+		// xóa lịch phòng
+		function xoalich(){
+		$(".xoalichphong").on('click',function(e){
+			e.preventDefault();
+			var id = $(this).attr("data-id");
+			let text;
+			  if (confirm("Bạn chắc chắn muốn xóa") == true) {
+				  $.ajax({
+			    		url: "/luanvan/deleteregistration",  
+			    		type: "POST",
+			    		data: {id:id},
+			    		success: function(data){
+							$("#tbodythemphong").html(data);
+							$('#deleterooms').modal('hide');
+			    		}
+			    	})
+			  } else {
+			    
+			  }
+			
+		}) 			
+ 			
+ 		}
+ 		xoalich()
 
 		
 		//Loc buoi

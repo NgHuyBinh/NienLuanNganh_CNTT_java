@@ -85,13 +85,44 @@ public class RegistrationDAO {
 		}return 0;
 	} 
 	
+	// thêm lịch phòng
+	public void insertRegistration(int room_id, String ngaydangky, String buoi, int soluonghientai){
+		String sql = "insert into registration (room_id,ngaydangky,buoi, soluonghientai) values (?,?,?,?)";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, room_id);
+			ps.setString(2, ngaydangky);
+			ps.setString(3, buoi);
+			ps.setInt(4, soluonghientai);
+			ps.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// xóa lịch phòng
+	public void deleteRegistration(int id){
+		String sql = "DELETE FROM registration WHERE id=?";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			ps.executeUpdate();
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void main(String[] args) {
 //		List<String> list = new RegistrationDAO().getAllNgay();
 //		for(String o : list) {
 //			System.out.println(o);
 //		}
-		System.out.println(new RegistrationDAO().getIdByRoomIdBuoiNgay("2", "Sáng", "2023-04-25"));
-		
+//		System.out.println(new RegistrationDAO().getIdByRoomIdBuoiNgay("2", "Sáng", "2023-04-25"));
+		new RegistrationDAO().insertRegistration(2, "sddd", "chieu", 0);
 		
 	}
 }
