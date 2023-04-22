@@ -185,31 +185,34 @@
 		})		
 		}
  		xoaphong()
+ 		
+ 		
+ 		// xem danh sách sinh viên
+		$(".viewstudent").on('click',function(){
+			alert(33)
+)
 		
-		
-		
-		// thêm lịch phòng
-		$(".themlichphong").on('click',function(){
-			$(".modal-body").html('<input type="text" id="room_id" placeholder="Nhập mã phòng" /><input type="text" id="ngaydangky" placeholder="Nhập ngày đăng ký" /><input type="text" id="buoi" placeholder="Nhập buổi" />');
-		})
+	// thêm lịch phòng
 		function themlich(){
 		$(".themlich").on('click',function(e){
 			e.preventDefault();
-			var room_id = $("#room_id").val();
+			var room_id = $("#room-id").val();
 			var ngaydangky = $("#ngaydangky").val();
 			var buoi = $("#buoi").val();
-			if(room_id == "" || ngaydangky == "" || buoi==""){
-				alert("Hãy nhập đầy đủ nội dung!");
+			if(room_id =="" || ngaydangky== "" || buoi==""){
+				alert("Vui lòng nhập đầy đủ");
 			}else{
-    			$.ajax({
-    	    		url: "/luanvan/insertregistration",  
-    	    		type: "POST",
-    	    		data: {room_id:room_id,ngaydangky:ngaydangky,buoi:buoi},
-    	    		success: function(data){
-    					$("#tbodythemlich").html(data);
+				$.ajax({
+					url: "/luanvan/themlich",
+					type: "POST",
+					data: {room_id:room_id,ngaydangky:ngaydangky,buoi:buoi},
+					success: function(data){
+						$("#tbodythemlich").html(data);
 						$('#themregistration').modal('hide');
-    	    		}
-    	    	})
+						xoalich();
+				 		themlich()
+					}
+				})	
 			}
 		}) 	
  			
@@ -219,65 +222,25 @@
 		
 		// xóa lịch phòng
 		function xoalich(){
-		$(".xoalichphong").on('click',function(e){
-			e.preventDefault();
-			var id = $(this).attr("data-id");
-			let text;
-			  if (confirm("Bạn chắc chắn muốn xóa") == true) {
-				  $.ajax({
-			    		url: "/luanvan/deleteregistration",  
-			    		type: "POST",
-			    		data: {id:id},
-			    		success: function(data){
-							$("#tbodythemphong").html(data);
-							$('#deleterooms').modal('hide');
-			    		}
-			    	})
-			  } else {
-			    
-			  }
-			
-		}) 			
+			$(".xoalichphong").on('click',function(e){
+				e.preventDefault();
+				var id = $(this).attr("data-id");
+				
+				$.ajax({
+					url: "/luanvan/xoalichphong",
+					type: "POST",
+					data: {id: id},
+					success:function(data){
+						$("#tbodythemlich").html(data);
+						xoalich()
+					}
+				})
+			}) 			
  			
  		}
  		xoalich()
 
-		
-		//Loc buoi
-		$("#locbuoi").on("input",function(){
-			var buoi = $("#locbuoi").val();
-			//var buoi = $(this).val();
-			var ngay = $("#locngay").val();
-			var phong = $("#locphong").val();
-			console.log(ngay);
-			console.log(phong);
-			$.ajax({
-				url: "/luanvan/filter",
-				type: "POST",
-				data: {buoi:buoi,phong:phong,ngay:ngay},
-				success: function(data){
-					$("#tbody").html(data);
-				}
-			})
-		});
-		//loc ngay
-		$("#locngay").on("input",function(){
-			var buoi = $("#locbuoi").val();
-			//var buoi = $(this).val();
-			var ngay = $("#locngay").val();
-			var phong = $("#locphong").val();
-			console.log(ngay);
-			console.log(phong);
-			$.ajax({
-				url: "/luanvan/filter",
-				type: "POST",
-				data: {buoi:buoi,phong:phong,ngay:ngay},
-				success: function(data){
-					$("#tbody").html(data);
-				}
-			})
-		});
-		//loc phong
+//lọc phong
 		$("#locphong").on("input",function(){
 			var buoi = $("#locbuoi").val();
 			//var buoi = $(this).val();

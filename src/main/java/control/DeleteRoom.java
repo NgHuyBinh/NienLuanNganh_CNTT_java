@@ -43,7 +43,6 @@ public class DeleteRoom extends HttpServlet {
 					i++;
 					out.println("<tr>\r\n"
 							+ "						<td style=\"border: 2px solid black;\">"+i+"</td>\r\n"
-							+ "						<td style=\"border: 2px solid black;\">"+rs.getInt("id") +"</td>\r\n"
 							+ "						<td style=\"border: 2px solid black;\">"+rs.getString("phong") +"</td>\r\n"
 							+ "						<td style=\"border: 2px solid black;\">"+rs.getInt("soluongtoida")+"</td>\r\n"
 							+ "						<td style=\"border: 2px solid black;\" style=\"text-align: center;\">\r\n"

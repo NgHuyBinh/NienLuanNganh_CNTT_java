@@ -35,13 +35,13 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
 							<h2>Fill out the form below to login</h2>
 							<form action="login" method="post">
 								<div class="form-sub-w3">
-									<input type="text" name="mssv" placeholder="Username " required/>
+									<input type="text" name="mssv" placeholder="Mã số sinh viên " required/>
 								<div class="icon-w3">
 									<i class="fa fa-user" aria-hidden="true"></i>
 								</div>
 								</div>
 								<div class="form-sub-w3">
-									<input type="password" name="password" placeholder="Password" required/>
+									<input type="password" name="password" placeholder="Mật khẩu" required/>
 								<div class="icon-w3">
 									<i class="fa fa-unlock-alt" aria-hidden="true"></i>
 								</div>

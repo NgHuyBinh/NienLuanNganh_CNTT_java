@@ -127,8 +127,8 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="buton" class="btn btn-success guiphanhoi" data-dismiss="modal">Xác nhận</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</buttotn>
+          <button type="buton" class="btn btn-success guiphanhoi" data-dismiss="modal">Gửi phản hồi</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</buttotn>
         </div>
         
       </div>
@@ -152,6 +152,8 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
+          <button type="buton" class="btn btn-success guiyeucau" data-dismiss="modal">Gửi yêu cầu</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</buttotn>
         </div>
         
       </div>

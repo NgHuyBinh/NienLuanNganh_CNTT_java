@@ -29,13 +29,14 @@
 	           	</div>        
 
         </div>
-        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-left: 1%;margin-bottom:1%;" id="insertroom">
+        <div class="container">
+        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-left: 1%;margin-bottom:1%;border-radius: 5%;" id="insertroom">
         		<a href="roomroom" style="color: black;">Quản lý phòng báo cáo</a>
         	</button>
-        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-bottom:1%;" id="insertregistration">
+        	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-bottom:1%; border-radius: 5%;" id="insertregistration">
         		<a href="registrationplus"  style="color: black;">Quản lý lịch phòng</a>
         	</button>
-			<table class="table table-bordered" >
+			<table class="table table-bordered" style="width : 1300px;"style="width : 1500px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Phòng</th> 
@@ -43,7 +44,7 @@
 					<th style="border: 2px solid black;">Buổi</th>
 					<th style="border: 2px solid black;">Số lượng hiện tại</th>
 					<th style="border: 2px solid black;">Số lượng tối đa</th>
-					<th style="border: 2px solid black;">Danh sách sinh viên</th>				
+					<th style="border: 2px solid black; width: 15%">Danh sách sinh viên</th>				
 				</thead>
 				<tbody id="tbody">
 				<%
@@ -79,6 +80,6 @@
 					
 				</tbody>
 			</table>		
-
+</div>
 </div>
 <%@ include file="/admin/footeradmin.jsp" %>

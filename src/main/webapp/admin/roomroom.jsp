@@ -16,7 +16,6 @@
 			<table class="table table-bordered container" style="width : 1300px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
-					<th style="border: 2px solid black;">Mã số phòng</th>
 					<th style="border: 2px solid black;">Phòng</th>
 					<th style="border: 2px solid black;">Số lượng tối đa</th>		
 					<th style="border: 2px solid black; width : 100px;">Thao tác</th>			
@@ -34,7 +33,6 @@
 				%>
 					<tr>
 						<td style="border: 2px solid black;"><%=i %></td>
-						<td style="border: 2px solid black;"><%=rs.getInt("id") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("phong") %></td>
 						<td style="border: 2px solid black;"><%=rs.getInt("soluongtoida") %></td>
 						<td style="border: 2px solid black;" style="text-align: center;">
@@ -66,7 +64,7 @@
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h3 class="modal-title">Lý do hủy</h3>
+          <h3 class="modal-title">Nhập phòng</h3>
           <button type="button" class="close" data-dismiss="modal">×</button>
         </div>
         

@@ -58,6 +58,8 @@ public class RoomDAO {
 		}
 	}
 	
+	
+	
 	public static void main(String[] args) {
 //		List<Room> list = new RoomDAO().getAllRoom();
 //		for(Room o : list) {

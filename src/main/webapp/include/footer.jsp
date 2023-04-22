@@ -205,8 +205,11 @@ $(document).ready(function () {
 
 	});
 	// gửi phản hồi
+	
+		// xử lý click chọn gửi
 	$(".phanhoi").on("click",function(e){
-		alert("22")
+		var id = $(this).attr("data-id");
+		$(".modal-body").html('<input type="hidden" id="id" value="'+id+'" /><input type="text" id="noidungphanhoi" placeholder="Nhập nội dung phản hồi" />');
 	})
 	
 	// gửi phản hồi

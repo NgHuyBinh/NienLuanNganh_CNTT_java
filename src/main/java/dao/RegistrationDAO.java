@@ -122,7 +122,7 @@ public class RegistrationDAO {
 //			System.out.println(o);
 //		}
 //		System.out.println(new RegistrationDAO().getIdByRoomIdBuoiNgay("2", "Sáng", "2023-04-25"));
-		new RegistrationDAO().insertRegistration(2, "sddd", "chieu", 0);
+		new RegistrationDAO().deleteRegistration(85);;
 		
 	}
 }
