@@ -27,12 +27,21 @@ public class XacNhan1 extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		//Lay du lieu hung gia tri
 			int id = Integer.parseInt(request.getParameter("id"));
+			int id2 = Integer.parseInt(request.getParameter("id2"));
+			try {
+				Connection conn = new DBContext().getConnection();
+				PreparedStatement ps = conn.prepareStatement("Update registration set soluonghientai = soluonghientai+1 where id =?");
+				ps.setInt(1, id2);
+				ps.executeUpdate();
+			}catch(Exception e) {
+				
+			}
 			
 		//Cap nhat thong qua ham update viet trong reigstedao
 			new RegisterDAO().updateDuyet("1", id);
 		//do ra du lieu
 			try {
-				String sql = "select register.id,phong,ngaydangky,buoi,mssv,hoten,trangthai,ghichu from register,registration,room,student where student.id=student_id and room.id=room_id and registration.id= registration_id";
+				String sql = "select registration.id,register.id,phong,ngaydangky,buoi,mssv,hoten,trangthai,ghichu from register,registration,room,student where student.id=student_id and room.id=room_id and registration.id= registration_id";
 				Connection conn = new DBContext().getConnection();
 				PreparedStatement ps = conn.prepareStatement(sql);
 				ResultSet rs = ps.executeQuery();
@@ -43,7 +52,7 @@ public class XacNhan1 extends HttpServlet {
 				// xử lý if
 					String trangthai = "";
 					if(rs.getString("trangthai").equals("0") ){
-						trangthai = "<button class='btn btn-success' id='xacnhan'>Xác nhận</button><button class='btn btn-danger'  data-toggle='modal' data-id='\\\"+rs.getInt(\\\"id\\\")+\\\"' data-target='#myModal' id='huybo'>Hủy</button>";
+						trangthai = "<button class='btn btn-success xacnhan'  data-regis-id='"+rs.getInt(1)+"' data-id='"+rs.getInt(2)+"'>Xác nhận</button><button class='btn btn-danger huybo'  data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#myModal' >Hủy</button>";
 					}
 					if(rs.getString("trangthai").equals("1") ){
 						trangthai = "<button class='btn btn-success'>Đã xác nhận</button>";		        

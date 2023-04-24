@@ -15,12 +15,27 @@ import java.util.TimeZone;
 import context.DBContext;
 import entity.Registration;
 import entity.Room;
+import entity.Student;
 
 public class RegistrationDAO {
 	Connection conn = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
-	
+	public List<Student> viewStudent(String id){
+		String sql = "select * from register,registration, student  where student.id = register.student_id and registration.id = register.registration_id and registration.id=? and trangthai=1";
+		List<Student> list = new ArrayList<>();
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Student(rs.getInt(11),rs.getString(12),rs.getString(13),rs.getString(14),rs.getString(15),rs.getString(16),rs.getString(17),rs.getString(18),rs.getString(19),Integer.toString(rs.getInt(20)),Integer.toString(rs.getInt(21))));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}return list;
+	}
 	
 	public List<Registration> getAllRegistration(){
 		String sql = "SELECT * FROM registration order by id";
@@ -122,7 +137,11 @@ public class RegistrationDAO {
 //			System.out.println(o);
 //		}
 //		System.out.println(new RegistrationDAO().getIdByRoomIdBuoiNgay("2", "Sáng", "2023-04-25"));
-		new RegistrationDAO().deleteRegistration(85);;
+//		new RegistrationDAO().deleteRegistration(85);;
+		List<Student> list = new RegistrationDAO().viewStudent("20");
+		for(Student o : list) {
+			System.out.println(o);
+		}
 		
 	}
 }

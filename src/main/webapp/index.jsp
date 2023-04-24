@@ -6,6 +6,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page import="context.DBContext" %>
 <%@ page import= "entity.Room" %>
+<%@ page import= "entity.Register" %>
 <%@ page import= "entity.Registration" %>
 <div class="banner">    	   
     <img src="images/photos/banner.jpg"  class="img-responsive" alt="slide">
@@ -28,6 +29,8 @@
 <div class="col-sm-7 col-md-8">
 	<div class="form-group">
 		<%
+		List<Register> list3 = (List<Register>)request.getAttribute("list3");	
+		
 			Student cs = (Student)request.getAttribute("Student");
 			String tenlop = (String)request.getAttribute("tenlop");
 			String hoTenGV = (String)request.getAttribute("hoTenGV");
@@ -38,6 +41,16 @@
 		<div class="form-group"><h3><b>Email:</b> <%=cs.getEmail()%></h3></div>
 		<div class="form-group"><h3><b>Lớp:</b> <%=tenlop%></h3></div>
 		<div class="form-group"><h3><b>Cố vấn:</b> <%=hoTenGV%> </h3></div>
+		<%
+			if(list3.get(0).getTrangthai().equals("1")){
+				out.println("<div class='form-group text-success'><h3><b>Đã xác nhận</b>  </h3></div>");
+			}
+		%>
+		<%
+			if(list3.get(0).getTrangthai().equals("2")){
+				out.println("<div class='form-group text-danger'><h3><b>Đã hủy bỏ:</b> "+list3.get(0).getGhichu()+" </h3></div>");
+			}
+		%>
 	</div>
 </div>
 <div class="col-sm-5 col-md-4">
@@ -83,7 +96,9 @@
         <div class="form-group">
             <textarea class="form-control" placeholder="Ghi chú" rows="4" id="ghichu"></textarea>
         </div>
-        <button class="btn btn-default" id="submit">Đăng ký</button>
+        <button class="btn btn-default" id="submit" <%if(list3.get(0).getTrangthai().equals("1")){
+			out.println("disabled");
+		} %>>Đăng ký</button>
     </form>    
 </div>
 </div>  

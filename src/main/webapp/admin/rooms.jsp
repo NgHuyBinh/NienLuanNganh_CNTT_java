@@ -43,8 +43,7 @@
 					<th style="border: 2px solid black;">Ngày</th>
 					<th style="border: 2px solid black;">Buổi</th>
 					<th style="border: 2px solid black;">Số lượng hiện tại</th>
-					<th style="border: 2px solid black;">Số lượng tối đa</th>
-					<th style="border: 2px solid black; width: 15%">Danh sách sinh viên</th>				
+					<th style="border: 2px solid black;">Số lượng tối đa</th>			
 				</thead>
 				<tbody id="tbody">
 				<%
@@ -64,7 +63,6 @@
 						<td style="border: 2px solid black;"><%=rs.getString("buoi") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("soluonghientai") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("soluongtoida") %></td>
-						<td style="border: 2px solid black;"> VIEW </td>
 					</tr>
 				<%
 				

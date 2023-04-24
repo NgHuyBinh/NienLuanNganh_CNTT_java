@@ -97,7 +97,7 @@
 				<%
 					
 					try {
-						String sql = "select register.id,phong,ngaydangky,buoi,mssv,hoten,trangthai,ghichu from register,registration,room,student where student.id=student_id and room.id=room_id and registration.id= registration_id";
+						String sql = "select registration.id,register.id,phong,ngaydangky,buoi,mssv,hoten,trangthai,ghichu from register,registration,room,student where student.id=student_id and room.id=room_id and registration.id= registration_id";
 						Connection conn = new DBContext().getConnection();
 						PreparedStatement ps = conn.prepareStatement(sql);
 						ResultSet rs = ps.executeQuery();
@@ -113,7 +113,7 @@
 						<td style="border: 2px solid black;"><%=rs.getString("hoten") %></td>
 						<td style="border: 2px solid black; text-align: center">
 						<% if(rs.getString("trangthai").equals("0") ){
-					        out.println("<button class='btn btn-success xacnhan' data-id='"+rs.getInt("id")+"'>Xác nhận</button>");
+					        out.println("<button class='btn btn-success xacnhan' data-regis-id='"+rs.getInt(1)+"' data-id='"+rs.getInt(2)+"'>Xác nhận</button>");
 					        out.println("<button class='btn btn-danger huybo'  data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#myModal'>Hủy</button>");
 						}
 					        if(rs.getString("trangthai").equals("1")){

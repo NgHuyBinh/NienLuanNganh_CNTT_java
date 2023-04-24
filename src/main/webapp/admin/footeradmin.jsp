@@ -97,41 +97,57 @@
 <script >
 	$(document).ready(function(){
 		// xử lý phê duyệt
-		$(".huybo").on('click',function(){
-			var id = $(this).attr("data-id");
-			$(".modal-body").html('<input type="hidden" id="id" value="'+id+'" /><input type="text" id="lydo" placeholder="Nhập lý do" />');
-		})
-		$(".guilydo").on('click',function(e){
-			e.preventDefault();
-			var id = $("#id").val();
-			var lydo = $("#lydo").val();
-			if(lydo == ""){
-				alert("Hãy nhập vào lý do!");
-			}else{
-    			$.ajax({
-    	    		url: "/luanvan/subadmin",  
-    	    		type: "POST",
-    	    		data: {id:id,lydo:lydo},
-    	    		success: function(data){
-						$("#tbodyduyet").html(data);
-						$('#myModal').modal('hide');
-    	    		}
-    	    	})
-			}
-		})
+		function huybo() {
+			$(".huybo").on('click',function(){
+				var id = $(this).attr("data-id");
+				$(".modal-body").html('<input type="hidden" id="id" value="'+id+'" /><input type="text" id="lydo" placeholder="Nhập lý do" />');
+			})
+		}
+		huybo()
+		function guilydo(){
+			$(".guilydo").on('click',function(e){
+				e.preventDefault();
+				var id = $("#id").val();
+				var lydo = $("#lydo").val();
+				if(lydo == ""){
+					alert("Hãy nhập vào lý do!");
+				}else{
+	    			$.ajax({
+	    	    		url: "/luanvan/subadmin",  
+	    	    		type: "POST",
+	    	    		data: {id:id,lydo:lydo},
+	    	    		success: function(data){
+							$("#tbodyduyet").html(data);
+							$('#myModal').modal('hide');
+							xacnhan()
+							guilydo()
+							huybo()
+	    	    		}
+	    	    	})
+				}
+			})
+		}
+		guilydo()
 		// xác nhận duyệt
-		$(".xacnhan").on('click',function(e){
-			e.preventDefault();
-			var id = $(this).attr("data-id");
-			$.ajax({
-	    		url: "/luanvan/xacnhan1",  
-	    		type: "POST",
-	    		data: {id:id},
-	    		success: function(data){
-					$("#tbodyduyet").html(data);
-	    		}
-	    	})
-		})
+		function xacnhan() {
+			$(".xacnhan").on('click',function(e){
+				e.preventDefault();
+				var id = $(this).attr("data-id");
+				var id2=$(this).attr("data-regis-id");
+				$.ajax({
+		    		url: "/luanvan/xacnhan1",  
+		    		type: "POST",
+		    		data: {id:id,id2:id2},
+		    		success: function(data){
+						$("#tbodyduyet").html(data);
+						guilydo()
+						xacnhan();
+						huybo()
+		    		}
+		    	})
+			})
+		}
+		xacnhan()
 		
 		// thêm phòng
 		$(".themphong").on('click',function(){
@@ -153,6 +169,8 @@
     					$("#tbodythemphong").html(data);
 						$('#roomroom').modal('hide');
 						xoaphong()
+						
+						viewSV()
     	    		}
     	    		
     	    	})
@@ -176,6 +194,7 @@
 							$("#tbodythemphong").html(data);
 							$('#deleterooms').modal('hide');
 							xoaphong()
+							viewSV()
 			    		}
 			    	})
 			  } else {
@@ -186,11 +205,21 @@
 		}
  		xoaphong()
  		
- 		
+ 		function viewSV(){
+ 			$(".viewstudent").on('click',function(e){
+ 				var id = $(this).attr("data-id");
+ 				$.ajax({
+ 					url: "/luanvan/viewstudents",
+ 					type: "GET",
+ 					data: {id:id},
+ 					success: function(data){
+ 						$(".modal-body2").html(data);
+ 					}
+ 				})
+ 			})
+ 		}viewSV()
  		// xem danh sách sinh viên
-		$(".viewstudent").on('click',function(){
-			alert(33)
-)
+		
 		
 	// thêm lịch phòng
 		function themlich(){

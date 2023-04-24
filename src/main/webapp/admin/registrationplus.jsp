@@ -44,8 +44,8 @@
 						<td style="border: 2px solid black;"><%=rs.getInt("soluonghientai") %></td>
 						<td style="border: 2px solid black;"><%=rs.getInt("soluongtoida") %></td>
 						<td style="border: 2px solid black;">
-							<button class='btn btn-danger xoalichphong' data-toggle="modal" data-id=<%=rs.getString("id") %>>Xóa</button>
-							<img id="viewstudent" data-toggle="modal" data-target="#themregistration" alt="" src="/luanvan/images/view.png">
+							<button class='btn btn-danger xoalichphong' data-toggle="modal" data-id='<%=rs.getString("id") %>'>Xóa</button>
+							<img data-id='<%=rs.getString("id") %>' class="viewstudent" data-toggle="modal" data-target="#View"   alt="" src="/luanvan/images/view.png">
 						</td>
 					</tr>	
 				<%
@@ -59,100 +59,80 @@
 				</tbody>
 			</table> 
 <!-- thêm lịch phòng -->
-<div class="modal fade" id="themregistration">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h2 class="modal-title">Thêm lịch phòng.</h2>
-          <button type="button" class="close" data-dismiss="modal">X</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-          	<select id="room-id" style="height: 43px; width: 80px;">
-          		<%
-          		try {
-					String sql = "select * from room ";
-					Connection conn = new DBContext().getConnection();
-					PreparedStatement ps = conn.prepareStatement(sql);
-					ResultSet rs = ps.executeQuery();
-					int i =0;
-					while(rs.next()) {
-						i++;
-					out.println("<option value='"+rs.getInt("id")+"'>"+rs.getString("phong")+"</option>") ; 
-					}
-			}catch(Exception e){
-          			System.out.print(e);
-          		}
-          		%>
-          		
-          	</select>
-			<input type="date" style="height: 43px; width: 200px;margin-left: 1%;" id="ngaydangky" placeholder="Nhập ngày đăng ký" />
-			<select id="buoi" style="height: 43px; width: 80px;margin-left: 1%;">
-				<option value="">Buổi</option>
-				<option value="Sáng">Sáng</option>
-				<option value="Chiều">Chiều</option>
-			</select>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success themlich">Thêm</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-        </div>
-        
-      </div>
-    </div>
-</div>
+	
 </div>
 
-<!-- modal form xem sinh viên -->
-<div class="modal fade" id="viewstudent">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h3 class="modal-title">Danh sách sinh viên</h3>
-          <button type="button" class="close" data-dismiss="modal">X</button>
-        </div>
-        
-        <!-- Modal body -->
-        <div class="modal-body">
-				<table class="table table-bordered container">
-				<thead class="table-dark">
-					<th style="border: 2px solid black;">STT</th>
-					<th style="border: 2px solid black;">MSSV</th> 
-					<th style="border: 2px solid black;">Họ tên</th>
-					<th style="border: 2px solid black;">Email</th>
-					<th style="border: 2px solid black;">Phòng</th>	
-					<th style="border: 2px solid black;">Buổi</th>	
-					<th style="border: 2px solid black;">Ngày</th>				
-				</thead>
-				<tbody id="tbodyviewstudent">
-					<tr>
-						<td style="border: 2px solid black;"></td>
-						<td style="border: 2px solid black;"></td>
-						<td style="border: 2px solid black;"></td>
-						<td style="border: 2px solid black;"></td>
-						<td style="border: 2px solid black;"></td>
-						<td style="border: 2px solid black;"></td>
-						<td style="border: 2px solid black;"></td>
-					</tr>	
-				</tbody>
-			</table>
-        </div>
-        
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-success guilydo">Xác nhận</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-        </div>
-        
-      </div>
-    </div>
-</div>
+<div class="modal fade" id="themregistration">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	      
+	        <!-- Modal Header -->
+	        <div class="modal-header">
+	          <h2 class="modal-title">Thêm lịch phòng.</h2>
+	          <button type="button" class="close" data-dismiss="modal">X</button>
+	        </div>
+	        
+	        <!-- Modal body -->
+	        <div class="modal-body">
+	          	<select id="room-id" style="height: 43px; width: 80px;">
+	          		<%
+	          		try {
+						String sql = "select * from room ";
+						Connection conn = new DBContext().getConnection();
+						PreparedStatement ps = conn.prepareStatement(sql);
+						ResultSet rs = ps.executeQuery();
+						int i =0;
+						while(rs.next()) {
+							i++;
+						out.println("<option value='"+rs.getInt("id")+"'>"+rs.getString("phong")+"</option>") ; 
+						}
+				}catch(Exception e){
+	          			System.out.print(e);
+	          		}
+	          		%>
+	          		
+	          	</select>
+				<input type="date" style="height: 43px; width: 200px;margin-left: 1%;" id="ngaydangky" placeholder="Nhập ngày đăng ký" />
+				<select id="buoi" style="height: 43px; width: 80px;margin-left: 1%;">
+					<option value="">Buổi</option>
+					<option value="Sáng">Sáng</option>
+					<option value="Chiều">Chiều</option>
+				</select>
+	        </div>
+	        
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-success themlich">Thêm</button>
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+	        </div>
+	        
+	      </div>
+	    </div>
+	</div>
+	
+	<div class="modal fade" id="View">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	      
+	        <!-- Modal Header -->
+	        <div class="modal-header">
+	          <h2 class="modal-title">Danh sách sinh viên</h2>
+	          <button type="button" class="close" data-dismiss="modal">X</button>
+	        </div>
+	        
+	        <!-- Modal body -->
+	        <div class="modal-body2">
+	          	
+	        </div>
+	        
+	        <!-- Modal footer -->
+	        <div class="modal-footer">
+	          
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+	        </div>
+	        
+	      </div>
+	    </div>
+	</div>
 
 <%@ include file="/admin/footeradmin.jsp" %>

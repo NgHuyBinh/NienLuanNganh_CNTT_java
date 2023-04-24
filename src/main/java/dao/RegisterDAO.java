@@ -3,6 +3,8 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import context.DBContext;
 import entity.Register;
@@ -11,7 +13,9 @@ public class RegisterDAO {
 	Connection conn = null;
 	PreparedStatement ps = null;
 	ResultSet rs = null;
+	
 	// ham dang ky
+	
 	public void getInsertRegister(int student_id,int registration_id,String trangthai,String ghichu) {
 		String sql = "INSERT INTO Register(student_id, registration_id, trangthai, ghichu) VALUES (?,?,?,?)";
 		try {
@@ -91,10 +95,28 @@ public class RegisterDAO {
 			e.printStackTrace();// TODO: handle exception
 		}
 	}
-	
+	public List<Register> getByStId(int id){
+		String sql = "SELECT * from register where student_id=?";
+			List<Register> list = new ArrayList<>();
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				list.add(new Register(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();// TODO: handle exception
+		}return list;
+	}
 	public static void main (String[] args) {
 	//	new RegisterDAO().updateRegister(7, 59, "0", "cập nhật");
-		
+		List<Register> list = new RegisterDAO().getByStId(7);
+		for(Register o : list) {
+			System.out.println(o);
+		}
 		
 	
 	}

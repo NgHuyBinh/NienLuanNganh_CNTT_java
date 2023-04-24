@@ -22,6 +22,7 @@ import dao.TeacherDAO;
 import entity.Student;
 import entity.Teacher;
 import entity.Class;
+import entity.Register;
 import entity.Registration;
 import entity.Room;
 
@@ -35,6 +36,9 @@ public class Index extends HttpServlet {
 		if(request.getSession().getAttribute("mssv") !=null) {
 			HttpSession session = request.getSession();
 			String mssv = (String)session.getAttribute("mssv");
+			
+			int student_id = new StudentDAO().getIdByMSSV(mssv);
+			List<Register> list3 = new RegisterDAO().getByStId(student_id);
 			Student s = new StudentDAO().getStudentByMssv(mssv);
 			int class_id = Integer.parseInt(s.getClass_id());
 			int teacher_id = Integer.parseInt(s.getTeacher_id());
@@ -51,6 +55,7 @@ public class Index extends HttpServlet {
 			request.setAttribute("Student", s);
 			request.setAttribute("tenlop", tenlop);
 			request.setAttribute("hoTenGV", hoTenGV);
+			request.setAttribute("list3", list3);
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}else {
 			response.sendRedirect("login");
