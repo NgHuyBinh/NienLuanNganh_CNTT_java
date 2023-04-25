@@ -215,7 +215,7 @@ $(document).ready(function () {
 	// gửi phản hồi
 	
 	$(".mophong").on("click",function(e){
-		alert("232")
+		
 	})
 	
 	

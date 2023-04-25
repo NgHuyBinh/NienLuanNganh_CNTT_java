@@ -117,23 +117,24 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h3 class="modal-title"><b>Nhập nội dung phản hồi</b></h3>
-          <button type="button" class="close" data-dismiss="modal">×</button>
+          <button type="button" class="close" data-dismiss="modal">X</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-          <input size="68" type="text" />
+          <input  size="68" type="text" style="width: 400px; height: 30px;s" />
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="buton" class="btn btn-success guiphanhoi" data-dismiss="modal">Gửi phản hồi</button>
+          <button type="buton" class="btn btn-success guiyeucau" data-dismiss="modal">Gửi yêu cầu</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</buttotn>
         </div>
         
       </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="mothemphong">
     <div class="modal-dialog">
@@ -142,7 +143,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h3 class="modal-title"><b>Nhập yêu cầu mở thêm phòng báo cáo</b></h3>
-          <button type="button" class="close" data-dismiss="modal">×</button>
+          <button type="button" class="close" data-dismiss="modal">X</button>
         </div>
         
         <!-- Modal body -->
