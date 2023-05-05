@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.StudentDAO;
+import entity.Student;
 
 /**
  * Servlet implementation class ResetPassword
@@ -19,13 +20,21 @@ import dao.StudentDAO;
 public class ResetPassword extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String mssv = (String)session.getAttribute("mssv");
+		Student s = new StudentDAO().getStudentByMssv(mssv);
+		request.setAttribute("Student", s);
 		request.getRequestDispatcher("resetpassword.jsp").forward(request, response);
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(request.getSession().getAttribute("mssv") !=null) {
+			HttpSession session = request.getSession();
+			String mssv2 = (String)session.getAttribute("mssv");
+			Student s = new StudentDAO().getStudentByMssv(mssv2);
 		String passcu = request.getParameter("passcu");
 		String passmoi1 = request.getParameter("passmoi1");
 		String passmoi2 = request.getParameter("passmoi2");
-		HttpSession session = request.getSession();
 		PrintWriter out = response.getWriter();
 		String mssv = session.getAttribute("mssv").toString();
 		// ktra pass  cũ đúng
@@ -38,7 +47,10 @@ public class ResetPassword extends HttpServlet {
 			//sai không cho cập nhật
 		}
 		
-		
+		}else {
+			response.sendRedirect("login");
+
+		}
 	}
 
 }

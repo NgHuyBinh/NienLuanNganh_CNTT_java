@@ -122,7 +122,7 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-          <input  size="68" type="text" style="width: 400px; height: 30px;s" />
+          <input  size="68" type="text" style="width: 400px; height: 30px;" />
         </div>
         
         <!-- Modal footer -->
