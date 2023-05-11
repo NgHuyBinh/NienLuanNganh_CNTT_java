@@ -248,7 +248,6 @@
  		}
  		themlich()
 
-		
 		// xóa lịch phòng
 		function xoalich(){
 			$(".xoalichphong").on('click',function(e){
@@ -268,7 +267,20 @@
  			
  		}
  		xoalich()
-
+	
+ 		
+ 		//xem danh sách sinh viên đăng ký
+ 		$(".xemxem").on("click",function(){
+ 			var id = $(this).attr("data-id");
+ 			$.ajax({
+ 				url: "/luanvan/viewstudent",
+ 				type: "GET",
+ 				data: {id:id},
+ 				success:function(data){
+ 					$("#xemne").html(data);
+ 				}
+ 			})
+ 		})
 //lọc phong
 		$("#locphong").on("input",function(){
 			var buoi = $("#locbuoi").val();

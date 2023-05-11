@@ -6,6 +6,11 @@
 %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.sql.*" %>
+<%@ page import="context.DBContext" %>
+<%@ page import= "entity.Room" %>
+<%@ page import= "entity.Register" %>
+<%@ page import= "entity.Registration" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,10 +95,33 @@
     <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 
       <ul class="nav navbar-nav" >
-			    	     	        
-        <li><a href="index">Trang chủ</a></li>     
-        <li><a class="phanhoi" data-id='"+rs.getInt("id")+"' data-toggle='modal' data-target='#guifeedback'>Phản hồi</a></li>
-        <li><a class="mophong" data-id='"+rs.getInt("id")+"' data-toggle='modal' data-target='#mothemphong'>DK thêm phòng</a></li>
+    	     	        
+        <li><a href="index">Trang chủ</a></li>
+        <%
+        String sql = "select * from register,student where student.id = register.student_id and trangthai=1 and student.mssv=?";
+		int check = 0;
+      	try {
+      		Connection conn = new DBContext().getConnection();
+      		PreparedStatement ps = conn.prepareStatement(sql);
+      		ps.setString(1,session.getAttribute("mssv").toString());
+      		ResultSet rs = ps.executeQuery();
+      		while(rs.next()){
+      			check = 1;
+      		}
+      	}catch(Exception e){
+      		
+      	}
+        
+        %>     
+        <li>
+        <%
+        	if(check==1){
+        		out.println("<a class='phanhoi'  data-toggle='modal' data-target='#guifeedback'>Phản hồi</a>");
+        	}else{
+        		out.println("<a class='mophong'>DK thêm phòng</a>");
+        	}
+        %>
+        </li>
         <li><a href="resetpassword">Đổi mật khẩu</a></li>   
         <li style="font-weight:bold;width:373.75px"><a >Hello,
         <%
@@ -122,15 +150,33 @@
         
         <!-- Modal body -->
         <div class="modal-body">
-          <input  size="68" type="text" style="width: 400px; height: 30px;" />
+          <input  size="68" type="text" style="width: 400px; height: 30px;" id="noidung"/>
+          <%
+          	 sql = "select * from student,register,registration,room where student.id = register.student_id and register.registration_id = registration.id and registration.room_id = room.id and trangthai = 1 and student.mssv = ?";
+
+          	try {
+          		Connection conn = new DBContext().getConnection();
+          		PreparedStatement ps = conn.prepareStatement(sql);
+          		ps.setString(1,session.getAttribute("mssv").toString());
+          		ResultSet rs = ps.executeQuery();
+          		while(rs.next()){
+          %>
+          <input  size="68" type="hidden" value="<%=rs.getInt(1)%>" id="student_id" style="width: 400px; height: 30px;" />
+          <input  size="68" type="hidden" value="<%=rs.getInt("room_id") %>" style="width:  400px; height: 30px;" id="room_id" />
+          <%			
+          		}
+          	}catch(Exception e){
+          		System.out.println(e);
+          	}
+          %>
+         
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="buton" class="btn btn-success guiyeucau" data-dismiss="modal">Gửi yêu cầu</button>
+          <button type="buton" class="btn btn-success guiyeucau" >Gửi yêu cầu</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</buttotn>
         </div>
-        
       </div>
     </div>
 </div>
@@ -145,15 +191,14 @@
           <h3 class="modal-title"><b>Nhập yêu cầu mở thêm phòng báo cáo</b></h3>
           <button type="button" class="close" data-dismiss="modal">X</button>
         </div>
-        
         <!-- Modal body -->
         <div class="modal-body">
-          <input  size="68" type="text" />
+          <input  size="68" type="text"  />
         </div>
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="buton" class="btn btn-success guiyeucau" data-dismiss="modal">Gửi yêu cầu</button>
+          <button type="button" class="btn btn-success guiyeucau" data-dismiss="modal">Gửi yêu cầu</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Hủy</buttotn>
         </div>
         

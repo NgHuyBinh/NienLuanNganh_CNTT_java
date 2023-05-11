@@ -207,15 +207,60 @@ $(document).ready(function () {
 	// gửi phản hồi
 	
 		// xử lý click chọn gửi
-	$(".phanhoi").on("click",function(e){
-		var id = $(this).attr("data-id");
-		$(".modal-body").html('<input type="hidden" id="id" value="'+id+'" /><input type="text" id="noidungphanhoi" placeholder="Nhập nội dung phản hồi" />');
+	$(".guiyeucau").on("click",function(e){
+		e.preventDefault();
+		var id_student = $("#student_id").val();
+		var id_room = $("#room_id").val();
+		var noidung = $("#noidung").val();
+		var currentdate = new Date(); 
+	    var datetime = 
+	    	currentdate.getFullYear()+ "-"
+	    	+ (currentdate.getMonth()+1)  + "-"+
+	    	currentdate.getDate() +" "+ 
+	                + currentdate.getHours() + ":"  
+	                + currentdate.getMinutes() + ":" 
+	                + currentdate.getSeconds();
+		if(noidung == ''){
+			alert("Vui lòng nhập nội dung");
+		}else{
+			$.ajax({
+				url:"/luanvan/GuiYeuCau",
+				type: "POST",
+				data: {id_student:id_student, id_room:id_room, noidung:noidung,datetime:datetime},
+				success: function(data){
+					alert("Gửi phản hồi thành công!");
+				}
+			})
+		}
 	})
 	
 	// gửi phản hồi
 	
 	$(".mophong").on("click",function(e){
 		
+		e.preventDefault();
+		var currentdate = new Date(); 
+		var datetime = 
+	    	currentdate.getFullYear()+ "-"
+	    	+ (currentdate.getMonth()+1)  + "-"+
+	    	currentdate.getDate();
+		
+		if(confirm("Muốn chắc chắn mở thêm phòng không?")){
+			
+				$.ajax({
+					url:"/luanvan/GuiYeuCau",
+					type: "GET",
+					data: {datetime:datetime},
+					success: function(data){
+						if(data == 1){
+							alert("Bạn đã đăng ký thêm phòng rồi");
+							return;
+						}
+						alert("Đăng ký phòng thành công!");
+					}
+				})
+			
+		}
 	})
 	
 	

@@ -114,7 +114,7 @@
 						<td style="border: 2px solid black; text-align: center">
 						<% if(rs.getString("trangthai").equals("0") ){
 					        out.println("<button class='btn btn-success xacnhan' data-regis-id='"+rs.getInt(1)+"' data-id='"+rs.getInt(2)+"'>Xác nhận</button>");
-					        out.println("<button class='btn btn-danger huybo'  data-toggle='modal' data-id='"+rs.getInt("id")+"' data-target='#myModal'>Hủy</button>");
+					        out.println("<button class='btn btn-danger huybo'  data-toggle='modal' data-id='"+rs.getInt(2)+"' data-target='#myModal'>Hủy</button>");
 						}
 					        if(rs.getString("trangthai").equals("1")){
 						        out.println("<button class='btn btn-success'>Đã xác nhận</button>");

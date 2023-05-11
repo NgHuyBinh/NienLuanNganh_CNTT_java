@@ -14,21 +14,7 @@
 				<div style="text-align:center;">
 					<h3 class="container" ><b>Từ ngày 24-04-2023 đến ngày 29-04-2023 </b></h3>
 				</div>
-		<div class="container">	
-	            <div id="filter" style="text-align:center;margin-top: 1%;margin-bottom:1%;">
-		            <select class="form-control" id="locphong">
-				        <option  value="">Phòng</option>
-		            </select>
-		            <select class="form-control" id="locbuoi" >
-		              <option value="">Buổi</option>
-		            </select>
-		            <select class="form-control" id="locngay" >
-		              <option value="">Ngày</option>
-		            </select>
-            
-	           	</div>        
 
-        </div>
         <div class="container">
         	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-left: 1%;margin-bottom:1%;border-radius: 5%;" id="insertroom">
         		<a href="roomroom" style="color: black;">Quản lý phòng báo cáo</a>
@@ -43,13 +29,14 @@
 					<th style="border: 2px solid black;">Ngày</th>
 					<th style="border: 2px solid black;">Buổi</th>
 					<th style="border: 2px solid black;">Số lượng hiện tại</th>
-					<th style="border: 2px solid black;">Số lượng tối đa</th>			
+					<th style="border: 2px solid black;">Số lượng tối đa</th>	
+					<th style="border: 2px solid black;width: 190px;">Danh sách sinh viên</th>		
 				</thead>
 				<tbody id="tbody">
 				<%
 					
 					try {
-						String sql = "select phong,ngaydangky,buoi,soluongtoida,soluonghientai from registration, room where room.id = registration.room_id";
+						String sql = "select registration.id,phong,ngaydangky,buoi,soluongtoida,soluonghientai from registration, room where room.id = registration.room_id";
 						Connection conn = new DBContext().getConnection();
 						PreparedStatement ps = conn.prepareStatement(sql);
 						ResultSet rs = ps.executeQuery();
@@ -63,6 +50,10 @@
 						<td style="border: 2px solid black;"><%=rs.getString("buoi") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("soluonghientai") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("soluongtoida") %></td>
+						<td style="border: 2px solid black;" class="xemxem" data-id=<%=rs.getInt("id") %> data-toggle="modal" data-target="#xemdanhsach">
+						<a>Xem danh sách</a>
+						
+						</td>
 					</tr>
 				<%
 				
@@ -72,12 +63,53 @@
 					}
 					
 				%>
-					
-				
-				
-					
 				</tbody>
 			</table>		
 </div>
 </div>
+
+
+
+<!--xem danh sách sinh viên từng phần  -->
+ <!-- The Modal -->
+<div class="modal fade" id="xemdanhsach">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title"><b>Danh sách sinh viên</b></h3>
+      </div> 
+      <div class="modal-body" style="font-size: 13px;">
+        <table class="table table-bordered table-hover">
+          <thead class="thead-light">
+            <tr>
+              <th class="text-center">STT</th>
+              <th class="text-center">MSSV</th>
+              <th class="text-center">Họ tên</th>
+              <th class="text-center">Số điện thoại</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Giới tính</th>
+              <th class="text-center">Địa chỉ</th>
+            </tr>
+          </thead>
+          <tbody id="xemne">
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
 <%@ include file="/admin/footeradmin.jsp" %>

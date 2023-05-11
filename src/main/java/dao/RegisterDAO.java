@@ -112,11 +112,7 @@ public class RegisterDAO {
 		}return list;
 	}
 	public static void main (String[] args) {
-	//	new RegisterDAO().updateRegister(7, 59, "0", "cập nhật");
-		List<Register> list = new RegisterDAO().getByStId(7);
-		for(Register o : list) {
-			System.out.println(o);
-		}
+	
 		
 	
 	}

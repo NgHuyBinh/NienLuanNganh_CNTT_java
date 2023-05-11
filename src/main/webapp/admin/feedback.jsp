@@ -15,7 +15,6 @@
 			<table class="table table-bordered container" style="width : 1300px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
-					<th style="border: 2px solid black;">Ngày</th> 
 					<th style="border: 2px solid black;">Phòng</th>
 					<th style="border: 2px solid black;">MSSV</th>
 					<th style="border: 2px solid black;">Họ tên sinh viên</th>
@@ -27,7 +26,7 @@
 					<%
 					
 					try {
-						String sql = "select  feedback.id,ngaydangky,phong,mssv,hoten,email,ngayphanhoi,noidung from feedback,student,registration,room ,register where room.id=feedback.room_id and register.registration_id = registration.id and room.id=registration.room_id and student.id=register.student_id";
+						String sql = "Select * from feedback,student,room where feedback.student_id = student.id and room.id = feedback.room_id";
 						Connection conn = new DBContext().getConnection();
 						PreparedStatement ps = conn.prepareStatement(sql);
 						ResultSet rs = ps.executeQuery();
@@ -36,7 +35,6 @@
 				%>
 					<tr>
 						<td style="border: 2px solid black;"><%=i%></td>
-						<td style="border: 2px solid black;"><%=rs.getString("ngaydangky") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("phong") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("mssv") %></td>
 						<td style="border: 2px solid black;"><%=rs.getString("hoten") %></td>
@@ -70,13 +68,13 @@
 					<th style="border: 2px solid black;">Họ tên</th>
 					<th style="border: 2px solid black;">Lớp</th>
 					<th style="border: 2px solid black;">Email</th>
-					<th style="border: 2px solid black;">Ngày phản hồi</th>
+					<th style="border: 2px solid black;">Ngày đăng ký</th>
 				</thead>
 				<tbody> 
 					<%
 					
 					try {
-						String sql = "select mssv,hoten,tenlop,email,ngaydangky from registerroom,student,class where student_id=student.id and class_id=class.id";
+						String sql = "select * from registerroom,student,class where class.id = student.class_id and student.id = registerroom.student_id";
 						Connection conn = new DBContext().getConnection();
 						PreparedStatement ps = conn.prepareStatement(sql);
 						ResultSet cs = ps.executeQuery();

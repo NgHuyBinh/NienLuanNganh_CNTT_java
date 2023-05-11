@@ -24,4 +24,19 @@ public class RegisterroomDAO {
 			e.printStackTrace();
 		}
 	}
+	public boolean checkSV(int student_id){
+		String sql = "select * from registerroom where student_id = ?";
+		try {
+			conn = new DBContext().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, student_id);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				return true;
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}return false;
+	}
 }

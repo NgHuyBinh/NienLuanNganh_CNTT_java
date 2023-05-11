@@ -11,8 +11,7 @@ public class FeekbackStudentDAO {
 	PreparedStatement ps = null;
 	ResultSet rs = null;
 	public void insertFeekback(String noidung, String ngayphanhoi, int student_id, int room_id, String trangthai, String ghichu) {
-		String sql = "insert into feedback (noidung,ngayphanhoi,student_id,room_id,trangthai,ghichu)\r\n"
-				+ "values (?,?,?,?,?,?)";
+		String sql = "insert into feedback (noidung,ngayphanhoi,student_id,room_id,trangthai,ghichu) values (?,?,?,?,?,?)";
 		try {
 			conn = new DBContext().getConnection();
 			ps = conn.prepareStatement(sql);
@@ -27,7 +26,9 @@ public class FeekbackStudentDAO {
 			e.printStackTrace();
 		}
 	}
-	
+	public static void main(String[] args) {
+		new FeekbackStudentDAO().insertFeekback("máy chiếu hư", "2023-2-22 00:00:00:00", 7, 5, "2","không" );
+	}
 	// cập nhật nội dung phản hồi
 	
 }

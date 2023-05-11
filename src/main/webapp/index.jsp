@@ -29,8 +29,6 @@
 <div class="col-sm-7 col-md-8">
 	<div class="form-group">
 		<%
-			
-		
 			Student cs = (Student)request.getAttribute("Student");
 			String tenlop = (String)request.getAttribute("tenlop");
 			String hoTenGV = (String)request.getAttribute("hoTenGV");
@@ -48,10 +46,6 @@
 					if(o.getTrangthai().equals("1")){
 						out.println("<div class='form-group text-success'><h3><b>Đã xác nhận</b>  </h3></div>");
 					}
-				
-				
-			
-			
 		%>
 		<%
 			if(o.getTrangthai().equals("2")){
@@ -183,7 +177,7 @@
 				<%
 					
 					try {
-						String sql = "select phong,ngaydangky,buoi,soluongtoida,soluonghientai from registration, room where room.id = registration.room_id";
+						 sql = "select phong,ngaydangky,buoi,soluongtoida,soluonghientai from registration, room where room.id = registration.room_id";
 						Connection conn = new DBContext().getConnection();
 						PreparedStatement ps = conn.prepareStatement(sql);
 						ResultSet rs = ps.executeQuery();
