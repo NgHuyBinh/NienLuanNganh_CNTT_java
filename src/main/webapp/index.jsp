@@ -164,7 +164,7 @@
 
         </div>
         	
-			<table class="table table-bordered" >
+			<table class="table table-bordered container" style="width : 1600px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Phòng</th> 

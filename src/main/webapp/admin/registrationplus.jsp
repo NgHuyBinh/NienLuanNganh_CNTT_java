@@ -15,7 +15,7 @@
 							<div class="table table-bordered container" style="width : 1300px;">
 				<button class='btn btn-success  themlichphong' data-toggle="modal" data-target="#themregistration">Thêm lịch phòng</button>
 			</div>	
-				<table class="table table-bordered container" style="width : 1300px;">
+				<table class="table table-bordered container" style="width : 1300px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Mã phòng</th> 

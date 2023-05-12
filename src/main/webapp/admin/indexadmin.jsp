@@ -82,7 +82,7 @@
 
         </div>
         	
-			<table class="table table-bordered container" style="width : 1500px;">
+			<table class="table table-bordered container" style="width : 1500px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Phòng</th> 
@@ -146,12 +146,12 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h3 class="modal-title">Lý do hủy</h3>
-          <button type="button" class="close" data-dismiss="modal">×</button>
+          <button type="button" class="close" data-dismiss="modal">X</button>
         </div>
         
         <!-- Modal body -->
         <div class="modal-body">
-          <input size="68" type="text" />
+          <input size="68" type="text" style="width: 300%;"/>
         </div>
         
         <!-- Modal footer -->

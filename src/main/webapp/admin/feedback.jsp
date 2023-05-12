@@ -12,7 +12,7 @@
 		<h1 class="container">Danh sách phản hồi cơ sở vật chất</h1>
 		<div style="text-align:center; margin-top: 1%;"><h2 class="container" >Tuần báo cáo tập trung </h2></div>
 		<div>
-			<table class="table table-bordered container" style="width : 1300px;">
+			<table class="table table-bordered container" style="width : 1300px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Phòng</th>
@@ -61,7 +61,7 @@
 		<h1 class="container">Danh sách đăng ký mở thêm phòng</h1>
 		<div style="text-align:center;margin-top: 1%;margin-bottom:0%;"><h2 class="container" >Tuần báo cáo tập trung </h2></div>
 		<div>
-			<table class="table table-bordered container" style="width : 1300px;">
+			<table class="table table-bordered container" style="width : 1300px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">MSSV</th> 

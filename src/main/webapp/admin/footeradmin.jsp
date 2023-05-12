@@ -92,8 +92,7 @@
 	th, td{
 		border: 2px solid black;
 	}</style>
-	
-	// đăng ký
+
 <script >
 	$(document).ready(function(){
 		// xử lý phê duyệt

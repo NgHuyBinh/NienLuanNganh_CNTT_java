@@ -22,7 +22,7 @@
         	<button class='btn btn-success' style="text-align:center;margin-top: 1%; margin-bottom:1%; border-radius: 5%;" id="insertregistration">
         		<a href="registrationplus"  style="color: black;">Quản lý lịch phòng</a>
         	</button>
-			<table class="table table-bordered" style="width : 1300px;"style="width : 1500px;">
+			<table class="table table-bordered" style="width : 1600px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Phòng</th> 

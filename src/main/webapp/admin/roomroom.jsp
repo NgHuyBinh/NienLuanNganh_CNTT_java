@@ -13,7 +13,7 @@
 					<h3 class="container" ><b>Từ ngày 24-04-2023 đến ngày 29-04-2023 </b></h3>
 				</div>
 
-			<table class="table table-bordered container" style="width : 1300px;">
+			<table class="table table-bordered container" style="width : 1300px;font-size: 20px;">
 				<thead class="table-dark">
 					<th style="border: 2px solid black;">STT</th>
 					<th style="border: 2px solid black;">Phòng</th>
